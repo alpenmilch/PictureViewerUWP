@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="AppTest.DetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:AppTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:DataTemplateTestModel.ImageProcessor"
+    xmlns:main="using:AppTest.MainPage"
+    mc:Ignorable="d">
+    <Frame x:Name="FrameDetail">
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ListView Background="LightCyan"
+                  ItemsSource="{x:Bind ImageInfos,Mode=OneWay}"
+                  RelativePanel.AlignLeftWithPanel="True"
+                  RelativePanel.AlignBottomWithPanel="True"
+                  RelativePanel.AlignTopWithPanel="True"
+                  Width="130"
+                  ItemClick="ListView_ItemClick"
+                  IsItemClickEnabled="True"
+                  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:File">
+                    <Grid>
+                        <Image Width="100" Source="{x:Bind bitmapImage}" Height="100" />
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ScrollViewer Margin="140,0,0,70"
+                      RelativePanel.AlignLeftWithPanel="True"
+                      RelativePanel.AlignRightWithPanel="True"
+                      RelativePanel.AlignBottomWithPanel="True"
+                      RelativePanel.AlignTopWithPanel="True"
+                      HorizontalScrollMode="Auto"
+                      VerticalScrollMode="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      ZoomMode="Enabled"
+                      x:Name="ImageScrollViewer">
+            <Image x:Name="ImageDisplay" Source="{x:Bind ShowedImage,Mode=OneWay}" Width="200" ></Image>
+        </ScrollViewer  >
+        <Frame RelativePanel.AlignBottomWithPanel="True"
+               RelativePanel.AlignLeftWithPanel="True"
+               RelativePanel.AlignRightWithPanel="True"
+               Height="60" Margin ="130,0,0,0 "
+               Background="LightGray">
+        </Frame>
+            <StackPanel Orientation="Horizontal" RelativePanel.AlignBottomWithPanel="True" RelativePanel.AlignRightWithPanel="True"
+                        Margin="130,0,0,0" Height="60">
+                <Slider Width="225" Margin="20,10,20,0" ValueChanged="Slider_ValueChanged" Maximum="15" Minimum="1" Value ="5"/>
+                <Button Content="返回" Click="Button_Click" Height="30" Width="50" Margin="20,0,30,0"></Button>
+            </StackPanel>
+    </RelativePanel>
+     
+    </Frame>
+    
+</Page>
