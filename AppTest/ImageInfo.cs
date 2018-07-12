@@ -25,7 +25,7 @@ namespace DataTemplateTestModel.ImageProcessor
     public static class FileManager
     {
         public static bool PageChanged = false;///是否切换过页面
-        public static string FolderPath = "C:\\Users\\LENOVO\\Pictures";///默认目录
+        public static StorageFolder PrimaryFolder = KnownFolders.PicturesLibrary;///默认目录
         public static StorageFolder CurrentFolder;///当前文件夹
         public static StorageFolder ParrentFolder;///上级文件夹
         public static ObservableCollection<File> FolderInfos;///文件夹集合
@@ -36,10 +36,9 @@ namespace DataTemplateTestModel.ImageProcessor
         {
             FolderInfos = new ObservableCollection<File>();
             ImageInfos = new ObservableCollection<File>();
-
             try
             {
-                CurrentFolder = await StorageFolder.GetFolderFromPathAsync(FolderPath);
+                CurrentFolder = PrimaryFolder;
             }
             catch (Exception e)
             {
